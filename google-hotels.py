@@ -71,30 +71,16 @@ class DatePickerDateRangeTest(unittest.TestCase):
         departure.click()
         time.sleep(2)
         
+        
+#________________PROBLEM PART IS BELOW_______I CANT SELECT THIS BACK BUTTON_________
+
         for x in range(3):
             day = WebDriverWait(departure, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='ow34']/div[2]/div/div[2]/div[4]/div/button[2]")) )
             day.click()
             time.sleep(2)
             
 
-        # select departure date 
-        '''for x in range(3):
-            day = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='dwrFZd1']/div/div[2]/button[1]")) )
-            #day = driver.find_element_by_xpath("//*[@id='dwrFZd1']/div/div[2]/button[1]")     
-            day.click()
-            time.sleep(1)'''
-
-
-
-        #departure = driver.find_element_by_xpath("//*[@id='dwrFZd0']/div/div[2]")
-        #arrival.click()
-        #time.sleep(2)
-
-        #submit = driver.find_element_by_xpath("//*[@id='ow34']/div[2]/div/div[2]/div[4]/div/button[2]") 
-        #submit.click()
-
         
-
         
     def tearDown(self):
     	time.sleep(2)
