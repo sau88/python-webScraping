@@ -34,6 +34,7 @@ google_arrival_class = 'tcAWyf WGMqof'
 google_departure_class='eoY5cb MphfQd yJ5hSd'
 
 
+
 class DatePickerDateRangeTest(unittest.TestCase):
 
     def setUp(self):
@@ -44,66 +45,67 @@ class DatePickerDateRangeTest(unittest.TestCase):
     
     def test_date_picker_date_range_(self):
         driver = self.driver
-        #navigate to the test website
         driver.get(google_hotels)
          
         
-        #_______________________Select to from date_____________________________________
-
+        #_______________________FROM DATE_____________________________________
        
-           
+        # Click arrival button, wait until its pop up
+
         arrival = driver.find_element_by_xpath("//*[@id='yDmH0d']/c-wiz[2]/div/div[2]/div[1]/div/div[2]/div[2]")
         arrival.click()
-        time.sleep(2) 
+        time.sleep(2)
+
+        # select month 
+        for x in range(1):
+            month = driver.find_element_by_xpath("/html/body/c-wiz[2]/div/div[2]/div[1]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[3]/div[1]/div/div/div[3]/button")     
+            #month = WebDriverWait(arrival, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='ow41']/div[2]/div/div[2]/div[3]/div[1]/div/div/div[3]/button")) )
+            month.click()
+            time.sleep(1)
+ 
 
         # google allows upto one month date selection
 
-        # select arrival date 
+        # select day 
         for x in range(3):
             day = driver.find_element_by_xpath("//*[@id='dwrFZd0']/div/div[1]/button[2]")     
             day.click()
             time.sleep(1)
 
         
-        #___________________________________________________________________________________
+        #________________________________TO DATE___________________________________________________
+        
+        # Swith to departure button
 
         departure = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='dwrFZd0']/div/div[2]")) )
         departure.click()
         time.sleep(2)
         
         
-#________________PROBLEM PART IS BELOW_______I CANT SELECT THIS BACK BUTTON_________
+        # select day 
 
         for x in range(3):
-            day = WebDriverWait(departure, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id='ow34']/div[2]/div/div[2]/div[4]/div/button[2]")) )
+            day = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/c-wiz[2]/div/div[2]/div[1]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[2]/div[2]/div/div[2]/button[2]")) )
             day.click()
             time.sleep(2)
             
+        # Submit
 
+        submit = driver.find_element_by_xpath("/html/body/c-wiz[2]/div/div[2]/div[1]/div/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[4]/div/button[2]") 
+        submit.click()
+        time.sleep(15)
         
-        
-    def tearDown(self):
-    	time.sleep(2)
+   
+
+    def tearDown(self): 
+        time.sleep(3)
         self.driver.close()	
         self.driver.quit()
         
 if __name__ == "__main__":
-	unittest.main()
+    unittest.main()
 
 
-
-
-
-"""
-ElementNotInteractableException: Message: 
-Element could not be scrolled into view
-"""
-
-"""
-ElementNotInteractableException: 
-Message: Element <div class="picker__day picker__day--infocus"> 
-could not be scrolled into view
-"""
 
 
 
